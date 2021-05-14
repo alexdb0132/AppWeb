@@ -2,39 +2,54 @@ import express from 'express';
 
 const app = express();
 
-const pieces = {
-    'Daddy': {
-      'artiste': "Charlotte Cardin",
-      'Categorie': "pop",
+const pieces = [{
+      titre:'Daddy',
+      artiste: "Charlotte Cardin",
+      Categorie: "pop"
     },
-    'Fever': {
-        'artiste': "The McCoys",
-        'Categorie': "rock",
-      },
-    'Peaches': {
-        'artiste': "Justin Bieber",
-        'Categorie': "pop",
+    {
+      titre: "Fever",
+      artiste: "The McCoys",
+      Categorie: "rock"
     },
-    'September': {
-        'artiste': "Earth, Wind & fire",
-        'Categorie': "Disco",
-        },
-};
+    {
+      titre:'Peaches',
+      artiste: "Justin Bieber",
+      Categorie: "pop"
+    },
+    {
+      titre: 'September',
+      artiste: "Earth, Wind & fire",
+      Categorie: "Disco"
+    }
+];
 
 app.get('/api/pieces/:id', (requete, reponse) =>
 {
-  let piece = pieces[requete.params.id];
-  if(piece !=null) {
-    reponse.status(200).json(piece);
+  let pieceRechercher;
+  pieces.forEach(piece => {
+    if(piece.titre === requete.params.id)
+    {
+      pieceRechercher = piece
+    }
+  });
+  if(pieceRechercher !=null) {
+    reponse.status(200).json(pieceRechercher);
   }
   else{
     reponse.status(200).json("piece non trouver");
   }
 });
 
-app.post('api/categories/ajouter',(requete, reponse) =>
+app.post('/api/categories/ajouter',(requete, reponse) =>
 {
-  pieces[requete.body.id]= requete.body.artiste,requete.body.Categorie;
+  const nouvellePiece = requete.body;
+
+  if(nouvellePiece.titre !== undefined && nouvellePiece.artiste !== undefined
+    && nouvellePiece.Categorie !== undefined)
+  {
+    pieces.push(nouvellepiece);
+  }
 });
 
 app.listen(8000,() => console.log('ecoute le port 8000'));
