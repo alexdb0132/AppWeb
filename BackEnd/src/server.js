@@ -3,7 +3,6 @@ import express from 'express';
 const app = express();
 
 const pieces = [{
-<<<<<<< Updated upstream
       titre:'Daddy',
       artiste: "Charlotte Cardin",
       Categorie: "pop"
@@ -45,28 +44,6 @@ app.get('/api/pieces/:id', (requete, reponse) =>
 app.post('/api/categories/ajouter',(requete, reponse) =>
 {
   const nouvellePiece = requete.body;
-=======
-  titre:'Daddy',
-  artiste: "Charlotte Cardin",
-  Categorie: "pop"
-},
-{
-  titre: "Fever",
-  artiste: "The McCoys",
-  Categorie: "rock"
-},
-{
-  titre:'Peaches',
-  artiste: "Justin Bieber",
-  Categorie: "pop"
-},
-{
-  titre: 'September',
-  artiste: "Earth, Wind & fire",
-  Categorie: "Disco"
-}
-];
->>>>>>> Stashed changes
 
   if(nouvellePiece.titre !== undefined && nouvellePiece.artiste !== undefined
     && nouvellePiece.Categorie !== undefined)
