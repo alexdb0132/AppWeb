@@ -36,11 +36,10 @@ const pieces = [
 
 function App() {
 
-
   return (
     <Router>
       <Container>
-        <PageAccueil path="/" component={PageAccueil} exact/>
+        <Route path="/" component={PageAccueil} exact/>
       </Container>
     </Router>
   );
