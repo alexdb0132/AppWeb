@@ -21,6 +21,20 @@ const pieces = {
         },
 };
 
+app.get('/api/pieces/:id', (requete, reponse) =>
+{
+  let piece = pieces[requete.params.id];
+  if(piece !=null) {
+    reponse.status(200).json(piece);
+  }
+  else{
+    reponse.status(200).json("piece non trouver");
+  }
+});
 
+app.post('api/categories/ajouter',(requete, reponse) =>
+{
+  pieces[requete.body.id]= requete.body.artiste,requete.body.Categorie;
+});
 
 app.listen(8000,() => console.log('ecoute le port 8000'));
