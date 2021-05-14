@@ -20,3 +20,7 @@ const pieces = {
         'Categorie': "Disco",
         },
 };
+
+
+
+app.listen(8000,() => console.log('ecoute le port 8000'));
