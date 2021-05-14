@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container';
 import './App.css';
 
 import PageAccueil from './Pages/PageAccueil';
+import PageCategories from './Pages/PageCategories'
 
 const pieces = [
   {
@@ -40,6 +41,7 @@ function App() {
     <Router>
       <Container>
         <Route path="/" component={PageAccueil} exact/>
+        <Route path="/categories" component={PageCategories} />
       </Container>
     </Router>
   );
