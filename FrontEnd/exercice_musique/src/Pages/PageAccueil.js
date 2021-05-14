@@ -5,7 +5,7 @@ function PageAccueil()
     return(
         <>
             <h1>Bienvenue!</h1>
-            <p>Banane au chocolat!</p>
+            <p>Affichez et gérez vos listes de créations musicales ici même sur notre site web!</p>
         </>
     )
 }
