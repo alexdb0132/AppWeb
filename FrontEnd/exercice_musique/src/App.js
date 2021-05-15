@@ -9,8 +9,9 @@ import Container from 'react-bootstrap/Container';
 
 import './App.css';
 
+import BarreNavigation from './Navigation/BarreNavigation';
 import PageAccueil from './Pages/PageAccueil';
-import PageCategories from './Pages/PageCategories'
+import PageCategories from './Pages/PageCategories';
 
 const pieces = [
   {
@@ -40,6 +41,7 @@ function App() {
   return (
     <Router>
       <Container>
+        <BarreNavigation/>
         <Route path="/" component={PageAccueil} exact/>
         <Route path="/categories" component={PageCategories} />
       </Container>
