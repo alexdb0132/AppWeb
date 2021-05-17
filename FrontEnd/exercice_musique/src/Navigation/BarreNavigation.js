@@ -13,7 +13,7 @@ function BarreNavigation()
                     <LinkContainer to='/' exact>
                         <Nav.Link>Accueil</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/'>
+                    <LinkContainer to='/repertoire'>
                         <Nav.Link>Répertoire musicale</Nav.Link>
                     </LinkContainer>
                     <LinkContainer to='/admin'>

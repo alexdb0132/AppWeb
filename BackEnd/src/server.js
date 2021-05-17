@@ -79,7 +79,7 @@ app.delete('/api/pieces/:id/supprimer', (requete,reponse) =>
 
 app.get('/api/pieces', (requete,reponse) =>{
   let piecesOrdreCategorie = pieces.slice()
-  piecesOrdreCategorie.sort((element1,element2) => (element1.Categorie > element2.Categorie) ? 1: -1)
+  piecesOrdreCategorie.sort((element1,element2) => (element1.categorie > element2.categorie) ? 1: -1)
 
   reponse.status(200).json(piecesOrdreCategorie)
 })
@@ -102,7 +102,7 @@ app.post('/api/categories/:id/modifier', (requete, reponse) =>{
   let piecesCategorieModifier = pieces.slice();
   piecesCategorieModifier.map(catMod => {
       if (catMod.Categorie == requete.params.id){
-        catMod.Categorie = requete.body.Categorie
+        catMod.Categorie = requete.body.categorie
       }
   })
   reponse.json(piecesCategorieModifier)
