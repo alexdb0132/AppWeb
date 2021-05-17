@@ -51,5 +51,46 @@ app.post('/api/categories/ajouter',(requete, reponse) =>
     pieces.push(nouvellepiece);
   }
 });
+app.get('/api/pieces', (requete,reponse) =>{
+  let piecesOrdreCategorie = pieces.slice()
+  piecesOrdreCategorie.sort((element1,element2) => (element1.Categorie > element2.Categorie) ? 1: -1)
+
+  reponse.status(200).json(piecesOrdreCategorie)
+})
+
+app.get('/api/categories', (requete,reponse) =>{
+  let listCategories = pieces.map(piece => piece.Categorie)
+  let listCategorieSansDoublon = new Set(listCategories)
+  reponse.status(200).json(Array.from(listCategorieSansDoublon))
+})
+
+app.post('/api/pieces/ajouter', (requete,reponse) =>{
+  if (requete.body.titre == null || requete.body.artiste == null ||requete.body.categorie ==null ) {
+    reponse.send("il manque un champ obligatoire ")    
+  }
+  else{
+    pieces.push(requete.body)
+  reponse.json(pieces)
+  }
+  
+})
+app.post('/api/categories/:id/modifier', (requete, reponse) =>{
+  let piecesCategorieModifier = pieces.slice();
+  piecesCategorieModifier.map(catMod => {
+      if (catMod.Categorie == requete.params.id){
+        catMod.Categorie = requete.body.Categorie
+      }
+  })
+  reponse.json(piecesCategorieModifier)
+})
+
+app.delete('/api/categories/:id/supprimer',(requete, reponse)=>{
+  let indexASupprimer = pieces.findIndex( piece => piece.Categorie==requete.params.id);
+    while (indexASupprimer > -1) {
+      pieces.splice(indexASupprimer, 1);
+      indexASupprimer = pieces.findIndex( piece => piece.Categorie==requete.params.id);
+    }
+    reponse.json(pieces)
+  })
 
 app.listen(8000,() => console.log('ecoute le port 8000'));
