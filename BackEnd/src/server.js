@@ -24,6 +24,12 @@ const pieces = [{
     }
 ];
 
+const categories = [
+  "Disco",
+  "pop",
+  "rock"
+];
+
 app.get('/api/pieces/:id', (requete, reponse) =>
 {
   let pieceRechercher;
@@ -93,64 +99,5 @@ app.delete('/api/categories/:id/supprimer',(requete, reponse)=>{
     reponse.json(pieces)
   })
 
-import express from 'express';
-
-const app = express();
-
-app.use(express.json());
-
-const pieces = [{
-      titre:'Daddy',
-      artiste: "Charlotte Cardin",
-      categorie: "pop"
-    },
-    {
-      titre: "Fever",
-      artiste: "The McCoys",
-      categorie: "rock"
-    },
-    {
-      titre:'Peaches',
-      artiste: "Justin Bieber",
-      categorie: "pop"
-    },
-    {
-      titre: 'September',
-      artiste: "Earth, Wind & fire",
-      categorie: "Disco"
-    }
-];
-
-app.get('/api/pieces', (requete,reponse)=>
-{
-  reponse.status(200).json(pieces);
-});
-app.get('/api/pieces/:id', (requete, reponse) =>
-{
-  let pieceRechercher;
-  pieces.forEach(piece => {
-    if(piece.titre === requete.params.id)
-    {
-      pieceRechercher = piece
-    }
-  });
-  if(pieceRechercher !=null) {
-    reponse.status(200).json(pieceRechercher);
-  }
-  else{
-    reponse.status(200).json("piece non trouver");
-  }
-});
-
-app.post('/api/categories/ajouter',(requete, reponse) =>
-{
-  const nouvellePiece = requete.body;
-  if(nouvellePiece.titre == null || nouvellePiece.artiste == null || nouvellePiece.artiste == null)
-  {
-    reponse.status(200).json("piece non trouver");
-  }
-  pieces.push(nouvellePiece);
-
-});
 
 app.listen(8000,() => console.log('ecoute le port 8000'));
