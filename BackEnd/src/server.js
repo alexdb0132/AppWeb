@@ -6,22 +6,22 @@ app.use(express.json());
 const pieces = [{
       titre:'Daddy',
       artiste: "Charlotte Cardin",
-      Categorie: "pop"
+      categorie: "pop"
     },
     {
       titre: "Fever",
       artiste: "The McCoys",
-      Categorie: "rock"
+      categorie: "rock"
     },
     {
       titre:'Peaches',
       artiste: "Justin Bieber",
-      Categorie: "pop"
+      categorie: "pop"
     },
     {
       titre: 'September',
       artiste: "Earth, Wind & fire",
-      Categorie: "Disco"
+      categorie: "Disco"
     }
 ];
 
@@ -60,23 +60,18 @@ app.post('/api/categories/ajouter',(requete, reponse) =>
 
 app.post('/api/pieces/:id/modifier', (requete,reponse) =>
 {
-  let piecesModifier = pieces.slice();
-  piecesModifier.map(pieceMod => {
-      if (pieceMod.titre == requete.params.id){
-        pieceMod = requete.body
-      }
-  })
-  reponse.json(piecesModifier);
-})
+  let indexAModifier = pieces.findIndex(piece => piece.titre===requete.params.id);
+  pieces[indexAModifier] = requete.body;
+  console.log(pieces[indexAModifier]);
+  reponse.status(200).json(pieces);
+});
 
-app.delete('api/pieces/:id/supprimer', (requete,reponse) =>
+app.delete('/api/pieces/:id/supprimer', (requete,reponse) =>
 {
-  let indexASupprimer = pieces.findIndex( piece => piece.titre==requete.params.id);
-  while (indexASupprimer > -1) {
-    pieces.splice(indexASupprimer, 1);
-    indexASupprimer = pieces.findIndex( piece => piece.Categorie==requete.params.id);
-  }
-  reponse.json(pieces)
+  let indexASupprimer = pieces.findIndex(piece => piece.titre===requete.params.id);
+  pieces.splice(indexASupprimer,1);
+
+  reponse.json(pieces);
 });
 
 
