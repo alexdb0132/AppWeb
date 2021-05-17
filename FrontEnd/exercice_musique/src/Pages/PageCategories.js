@@ -16,10 +16,26 @@ const tableauCategories = [
 function PageCategories(){
   const [categories, setCategories] = useState(tableauCategories);
 
+  function AjouterCategorie(p_categorie){
+    const nouveauTableau = categories.slice();
+
+    nouveauTableau.push(p_categorie);
+
+    setCategories(nouveauTableau);
+  }
+
+  function ModifierCategorie(p_categorie){
+    alert(`Modifier pour ${p_categorie}`)
+  }
+
+  function SupprimerCategorie(p_categorie){
+    
+  }
+
   const options = {
-    ajouter : <AfficherAjouterCategorie/>,
-    modifier : <AfficherModifierCategorie categories={categories}/>,
-    supprimer : <AfficherSupprimerCategorie categories={categories}/>
+    ajouter : <AfficherAjouterCategorie AjouterCategorie={AjouterCategorie}/>,
+    modifier : <AfficherModifierCategorie categories={categories} ModifierCategorie={ModifierCategorie}/>,
+    supprimer : <AfficherSupprimerCategorie categories={categories} SupprimerCategorie={SupprimerCategorie}/>
   };
 
   return (
@@ -53,25 +69,27 @@ function PageCategories(){
   );
 }
 
-function AfficherAjouterCategorie(){
+function AfficherAjouterCategorie({ AjouterCategorie }){
+  const [categorieAAjouter, setCategorie] = useState("");
+
   return (
     <>
       <Form>
         <Form.Group>
         <Form.Label>Ajouter une catégorie</Form.Label>
         <br/>
-        <Form.Control size="small" type="text"/>
+        <Form.Control size="small" type="text" onChange={(event) => setCategorie(event.target.value)}/>
         </Form.Group>
       </Form>
       <br/>
-      <Button>
+      <Button onClick={() => AjouterCategorie(categorieAAjouter)}>
           Ajouter
       </Button>
     </>
   );
 }
 
-function AfficherModifierCategorie({ categories }){
+function AfficherModifierCategorie({ categories, ModifierCategorie }){
   const [categorieSelectionner, setCategorie] = useState("");
 
   return (
@@ -91,14 +109,14 @@ function AfficherModifierCategorie({ categories }){
         </Form.Group>
       </Form>
       <br/>
-      <Button>
+      <Button onClick={() => ModifierCategorie(categorieSelectionner)}>
           Modifier
       </Button>
     </>
   );
 }
 
-function AfficherSupprimerCategorie({ categories }){
+function AfficherSupprimerCategorie({ categories, SupprimerCategorie }){
   const [categorieSelectionner, setCategorie] = useState("");
 
   return (
@@ -118,7 +136,7 @@ function AfficherSupprimerCategorie({ categories }){
         </Form.Group>
       </Form>
       <br/>
-      <Button>
+      <Button onClick={() => SupprimerCategorie(categorieSelectionner)}>
           Supprimer
       </Button>
     </>
