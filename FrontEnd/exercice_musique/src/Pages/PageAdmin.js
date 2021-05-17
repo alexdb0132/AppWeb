@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, {useState, useEffect} from 'react';
 
 function PageAdmin()
@@ -11,4 +12,19 @@ function PageAdmin()
     )
 }
 
+=======
+import React from 'react';
+
+function PageAdmin({Repertoire})
+{
+    const repertoire = Repertoire;
+
+    return(
+        <>
+            
+        </>
+    )
+}
+
+>>>>>>> Stashed changes
 export default PageAdmin
