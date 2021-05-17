@@ -1,5 +1,5 @@
 import React from 'react';
-import {LinkContainer} from 'react-router-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
@@ -19,7 +19,7 @@ function BarreNavigation()
                     <LinkContainer to='/'>
                         <Nav.Link>Administration du répertoire</Nav.Link>
                     </LinkContainer>
-                    <LinkContainer to='/'>
+                    <LinkContainer to='/categories'>
                         <Nav.Link>Catégorie musical</Nav.Link>
                     </LinkContainer>
                 </Nav>
