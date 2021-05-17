@@ -30,7 +30,6 @@ const categories = [
   "pop",
   "rock"
 ];
-
 app.get('/api/pieces/:id', (requete, reponse) =>
 {
   let pieceRechercher;
@@ -50,14 +49,39 @@ app.get('/api/pieces/:id', (requete, reponse) =>
 
 app.post('/api/categories/ajouter',(requete, reponse) =>
 {
-  const nouvellePiece = requete.body;
+  const nouvelleCategoire = requete.body;
 
-  if(nouvellePiece.titre !== undefined && nouvellePiece.artiste !== undefined
-    && nouvellePiece.Categorie !== undefined)
+  if(nouvelleCategoire === undefined)
   {
-    pieces.push(nouvellepiece);
+    reponse.send("il manque un champ obligatoire ")   
   }
+  categories.push(nouvelleCategoire);
 });
+
+app.post('/api/pieces/:id/modifier', (requete,reponse) =>
+{
+  let piecesModifier = pieces.slice();
+  piecesModifier.map(pieceMod => {
+      if (pieceMod.titre == requete.params.id){
+        pieceMod = requete.body
+      }
+  })
+  reponse.json(piecesModifier);
+})
+
+app.delete('api/pieces/:id/supprimer', (requete,reponse) =>
+{
+  let indexASupprimer = pieces.findIndex( piece => piece.titre==requete.params.id);
+  while (indexASupprimer > -1) {
+    pieces.splice(indexASupprimer, 1);
+    indexASupprimer = pieces.findIndex( piece => piece.Categorie==requete.params.id);
+  }
+  reponse.json(pieces)
+});
+
+
+// -------------------------------
+
 app.get('/api/pieces', (requete,reponse) =>{
   let piecesOrdreCategorie = pieces.slice()
   piecesOrdreCategorie.sort((element1,element2) => (element1.Categorie > element2.Categorie) ? 1: -1)
