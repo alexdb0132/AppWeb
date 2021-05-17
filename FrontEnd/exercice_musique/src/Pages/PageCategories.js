@@ -7,14 +7,17 @@ import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Tab from 'react-bootstrap/Tab';
 
-const tableauCategories = [
-  "pop",
-  "rock",
-  "disco"
-];
-
 function PageCategories(){
-  const [categories, setCategories] = useState(tableauCategories);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const chercherDonnees = async () => {
+      const resultat = await fetch(`api/categories`);
+      const body = await resultat.json();
+      setCategories(body);
+    }
+    chercherDonnees();
+  }, []);
 
   function AjouterCategorie(p_categorie){
     const nouveauTableau = categories.slice();
@@ -105,7 +108,7 @@ function AfficherModifierCategorie({ categories, ModifierCategorie }){
           }
         </Form.Control>
         <br/>
-        <Form.Control size="small" type="text" value={categorieSelectionner}/>
+        <Form.Control size="small" type="text" />
         </Form.Group>
       </Form>
       <br/>
