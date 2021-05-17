@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,7 +22,8 @@ function PageAdmin()
             <Table striped bordered hover>
                 {repertoire.map(piece => <tr><td>Titre: {piece.titre}, Artiste: {piece.artiste}, Categorie: {piece.categorie} <br/>
                 <Button size="sm" active="true" variant="primary">Modifier</Button>
-                <Button size="sm" active="true" variant="primary">Supprimer</Button></td></tr>)}
+                <nbsp/>
+                <Button size="sm" active="true" variant="primary" component={Link} to="/supprimer/Daddy">Supprimer</Button></td></tr>)}
             </Table>
         </>
     );

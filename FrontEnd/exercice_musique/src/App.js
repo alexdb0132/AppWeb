@@ -15,6 +15,7 @@ import PageRepertoire from './Pages/PageRepertoire';
 import PageAdmin from './Pages/PageAdmin';
 import PageCategories from './Pages/PageCategories';
 import PageModifierPiece from './Pages/PageModifierPiece';
+import PageSupprimerPiece from './Pages/PageSupprimerPiece';
 
 const pieces = [
   {
@@ -52,6 +53,7 @@ function App() {
         <Route path="/admin" component={PageAdmin} />
         <Route path="/categories" component={PageCategories} />
         <Route path="/modifier/:id" component={PageModifierPiece} />
+        <Route path="/supprimer/:id" component={PageSupprimerPiece} />
       </Container>
     </Router>
   );
