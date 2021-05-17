@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { json } from 'express';
 
 const app = express();
 app.use(express.json());
@@ -65,19 +65,17 @@ app.get('/api/pieces', (requete,reponse) =>{
   reponse.status(200).json(piecesOrdreCategorie)
 })
 
-app.get('/api/categories', (requete,reponse) =>{
-  let listCategories = pieces.map(piece => piece.Categorie)
-  let listCategorieSansDoublon = new Set(listCategories)
-  reponse.status(200).json(Array.from(listCategorieSansDoublon))
-})
+app.get('/api/categories', (requete,reponse) =>{ reponse.status(200).json(categories)})
 
 app.post('/api/pieces/ajouter', (requete,reponse) =>{
-  if (requete.body.titre == null || requete.body.artiste == null ||requete.body.categorie ==null ) {
+  const {titre,artiste,categorie} = requete.body;
+
+  if (titre == null || artiste == null ||categorie ==null ) {
     reponse.send("il manque un champ obligatoire ")    
   }
   else{
     pieces.push(requete.body)
-  reponse.json(pieces)
+    reponse.json(pieces)
   }
   
 })
