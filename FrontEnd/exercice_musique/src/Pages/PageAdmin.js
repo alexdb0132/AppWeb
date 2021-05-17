@@ -1,9 +1,9 @@
-<<<<<<< Updated upstream
 import React, {useState, useEffect} from 'react';
+import Table from 'react-bootstrap/Table';
 
 function PageAdmin()
 {
-    const [repertoire, setRepertoire] = useState({});
+    const [repertoire, setRepertoire] = useState([]);
     
     useEffect(() => {
         const chercherDonnes = async () => {
@@ -16,27 +16,11 @@ function PageAdmin()
 
     return(
         <>
-            <ul>
-                {repertoire.map(piece => <li>{piece.titre}</li>)}
-            </ul>
-            <br/>
+            <Table striped bordered hover>
+                {repertoire.map(piece => <tr><td>Titre: {piece.titre}, Artiste: {piece.artiste}, Categorie: {piece.categorie}</td></tr>)}
+            </Table>
         </>
     );
 }
 
-=======
-import React from 'react';
-
-function PageAdmin({Repertoire})
-{
-    const repertoire = Repertoire;
-
-    return(
-        <>
-            
-        </>
-    )
-}
-
->>>>>>> Stashed changes
 export default PageAdmin

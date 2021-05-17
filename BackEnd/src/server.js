@@ -6,22 +6,22 @@ app.use(express.json());
 const pieces = [{
       titre:'Daddy',
       artiste: "Charlotte Cardin",
-      Categorie: "pop"
+      categorie: "pop"
     },
     {
       titre: "Fever",
       artiste: "The McCoys",
-      Categorie: "rock"
+      categorie: "rock"
     },
     {
       titre:'Peaches',
       artiste: "Justin Bieber",
-      Categorie: "pop"
+      categorie: "pop"
     },
     {
       titre: 'September',
       artiste: "Earth, Wind & fire",
-      Categorie: "Disco"
+      categorie: "Disco"
     }
 ];
 
