@@ -25,6 +25,7 @@ function PageCategories(){
     nouveauTableau.push(p_categorie);
 
     setCategories(nouveauTableau);
+    alert(`La categorie ${p_categorie} est ajouter`);
   }
 
   function ModifierCategorie(p_categorie){
@@ -32,7 +33,8 @@ function PageCategories(){
   }
 
   function SupprimerCategorie(p_categorie){
-    
+    fetch(`/api/categories/${p_categorie}/supprimer`, { method: 'DELETE' });
+    alert(`La categorie ${p_categorie} est supprimer`);
   }
 
   const options = {

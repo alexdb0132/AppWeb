@@ -109,12 +109,11 @@ app.post('/api/categories/:id/modifier', (requete, reponse) =>{
 })
 
 app.delete('/api/categories/:id/supprimer',(requete, reponse)=>{
-  let indexASupprimer = pieces.findIndex( piece => piece.Categorie==requete.params.id);
-    while (indexASupprimer > -1) {
-      pieces.splice(indexASupprimer, 1);
-      indexASupprimer = pieces.findIndex( piece => piece.Categorie==requete.params.id);
-    }
-    reponse.json(pieces)
+    let indexASupprimer = categories.findIndex(cat => cat===requete.params.id);
+    console.log(indexASupprimer);
+    categories.splice(indexASupprimer,1);
+  
+    reponse.json(categories);
   })
 
 
