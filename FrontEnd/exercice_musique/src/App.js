@@ -15,6 +15,7 @@ import PageAdmin from './Pages/PageAdmin';
 import PageCategories from './Pages/PageCategories';
 import PageModifierPiece from './Pages/PageModifierPiece';
 import PageSupprimerPiece from './Pages/PageSupprimerPiece';
+import PageRepertoire from './Pages/PageRepertoire';
 
 const pieces = [
   {
@@ -46,6 +47,7 @@ function App() {
       <Container>
         <BarreNavigation/>
         <Route path="/" component={PageAccueil} exact/>
+        <Route path="/repertoire" component={PageRepertoire} exact/>
         <Route path="/admin" component={PageAdmin} />
         <Route path="/categories" component={PageCategories} />
         <Route path="/modifier/:id" component={PageModifierPiece} />

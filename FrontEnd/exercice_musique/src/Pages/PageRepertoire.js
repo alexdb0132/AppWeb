@@ -17,8 +17,21 @@ function PageRepertoire()
 
     return(
         <>
+        <h1>Repertoire: </h1>
             <Table striped bordered hover>
-                {repertoire.map(piece => <tr><td>Titre: {piece.titre}, Artiste: {piece.artiste}, Categorie: {piece.categorie} <br/></td></tr>)}
+                <thead>
+                    <th>Titre</th>
+                    <th>Artiste</th>
+                    <th>Categorie</th>
+                </thead>
+                <tbody>
+                {repertoire.map(piece => <tr>
+                    <td>{piece.titre}</td>
+                    <td>{piece.artiste}</td>
+                    <td>{piece.categorie}</td>
+                    </tr>)}
+                </tbody>
+
             </Table>
         </>
     );

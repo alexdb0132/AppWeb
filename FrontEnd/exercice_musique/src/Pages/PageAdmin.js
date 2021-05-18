@@ -20,10 +20,25 @@ function PageAdmin()
     return(
         <>
             <Table striped bordered hover>
-                {repertoire.map((piece, index) => <tr><td>Titre: {piece.titre}, Artiste: {piece.artiste}, Categorie: {piece.categorie} <br/>
-                <Link key={index} to={`/modifier/${index}`}><Button size="sm" active="true" variant="primary" >Modifier</Button></Link>
-                <nbsp/>
-                <Link key={piece.titre} to={`/supprimer/${piece.titre}`}><Button size="sm" active="true" variant="primary" >Supprimer</Button></Link></td></tr>)}
+                <thead>
+                    <th>Titre</th>
+                    <th>Artiste</th>
+                    <th>Categorie</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    {repertoire.map((piece, index) => 
+                    <tr>
+                        <td>{piece.titre}</td>
+                        <td>{piece.artiste}</td>
+                        <td>{piece.categorie}</td>
+                        <td>
+                            <Link key={index} to={`/modifier/${index}`}><Button size="sm" active="true" variant="primary" >Modifier</Button></Link>
+                            &nbsp;
+                            <Link key={piece.titre} to={`/supprimer/${piece.titre}`}><Button size="sm" active="true" variant="primary" >Supprimer</Button></Link>
+                        </td>
+                    </tr>)}
+                </tbody>
             </Table>
         </>
     );
