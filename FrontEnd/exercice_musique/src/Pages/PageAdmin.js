@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Link} from 'react-router-dom';
 
 function PageAdmin()
 {
@@ -24,7 +23,7 @@ function PageAdmin()
                 {repertoire.map((piece, index) => <tr><td>Titre: {piece.titre}, Artiste: {piece.artiste}, Categorie: {piece.categorie} <br/>
                 <Link key={index} to={`/modifier/${index}`}><Button size="sm" active="true" variant="primary" >Modifier</Button></Link>
                 <nbsp/>
-                <Button size="sm" active="true" variant="primary" >Supprimer</Button></td></tr>)}
+                <Link key={piece.titre} to={`/supprimer/${piece.titre}`}><Button size="sm" active="true" variant="primary" >Supprimer</Button></Link></td></tr>)}
             </Table>
         </>
     );

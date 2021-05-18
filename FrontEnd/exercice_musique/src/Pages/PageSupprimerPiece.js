@@ -1,37 +1,47 @@
-import React from 'react';
+import React, {useState, useEffect, setState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import {Link} from 'react-router-dom';
 
-const pieceRenvoye = {
-    titre: 'Daddy',
-    artiste: 'Charlotte Cardin',
-    categorie: 'pop'
-};
+
 
 function PageSupprimerPiece({match}){
+
     const identifiant = match.params.id;
 
+    const [repertoire, setRepertoire] = useState([]);
+    
+    useEffect(() => {
+        const chercherDonnes = async () => {
+            const resultat = await fetch(`/api/pieces`);
+            const body = await resultat.json();
+            setRepertoire(body);
+        };
+        chercherDonnes();
+    }, []);
+
+    function supprimerPiece()
+    {
+        fetch(`/api/pieces/${identifiant}/supprimer`, { method: 'DELETE' });
+    }
     return(
         <>
-            <h1>Supprimer une piece</h1>
+            <h1>{identifiant}</h1>
+            <h1>Supprimer cette piece ?</h1>
             <Table striped bordered hover>
                 <thead>
                     <th>Titre</th>
-                    <th>Artiste</th>
-                    <th>categorie</th>
                 </thead>
                 <tbody>
-                    <td>{pieceRenvoye.titre}</td>
-                    <td>{pieceRenvoye.artiste}</td>
-                    <td>{pieceRenvoye.categorie}</td>
+                    <td>{identifiant}</td>
                 </tbody>
             </Table>
             <Row>
                 <Col>
-                <Button>Supprimer</Button>
+                <Link to={`/admin`}><Button onClick={() => supprimerPiece()}>Supprimer</Button></Link>
                 </Col>
             </Row>
         </>
