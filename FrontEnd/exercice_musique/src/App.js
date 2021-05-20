@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Route 
@@ -16,29 +16,7 @@ import PageCategories from './Pages/PageCategories';
 import PageModifierPiece from './Pages/PageModifierPiece';
 import PageSupprimerPiece from './Pages/PageSupprimerPiece';
 import PageRepertoire from './Pages/PageRepertoire';
-
-const pieces = [
-  {
-    titre: 'Daddy',
-    artiste: 'Charlotte Cardin',
-    categorie: 'pop'
-  },
-  {
-    titre: 'Fever',
-    artiste: 'The McCoys',
-    categorie: 'rock'
-  },
-  {
-    titre: 'Peaches',
-    artiste: 'Jusint Bieber',
-    categorie: 'pop'
-  },
-  {
-    titre: 'September',
-    artiste: 'Earth, Wind, Fire',
-    categorie: 'Disco'
-  },
-]
+import PageAjouterPiece from './Pages/PageAjouterPiece';
 
 function App() {
 
@@ -49,6 +27,7 @@ function App() {
         <Route path="/" component={PageAccueil} exact/>
         <Route path="/repertoire" component={PageRepertoire} exact/>
         <Route path="/admin" component={PageAdmin} />
+        <Route path="/ajouter" component={PageAjouterPiece} />
         <Route path="/categories" component={PageCategories} />
         <Route path="/modifier/:id" component={PageModifierPiece} />
         <Route path="/supprimer/:id" component={PageSupprimerPiece} />

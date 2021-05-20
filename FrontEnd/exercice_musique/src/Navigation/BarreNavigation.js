@@ -19,6 +19,9 @@ function BarreNavigation()
                     <LinkContainer to='/admin'>
                         <Nav.Link>Administration du répertoire</Nav.Link>
                     </LinkContainer>
+                    <LinkContainer to='/ajouter' exact>
+                        <Nav.Link>Ajouter Pièce</Nav.Link>
+                    </LinkContainer>
                     <LinkContainer to='/categories'>
                         <Nav.Link>Catégorie musical</Nav.Link>
                     </LinkContainer>
