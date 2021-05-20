@@ -17,7 +17,7 @@ function PageCategories(){
       setCategories(body);
     }
     chercherDonnees();
-  }, [],[categories]);
+  }, []);
 
   function AjouterCategorie(p_categorie){
     const nouveauTableau = categories.slice();
