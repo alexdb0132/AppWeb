@@ -32,8 +32,8 @@ const categories = [
 ];
 app.get('/api/pieces/:id', (requete, reponse) =>
 {
-  let pieceRechercher;
-  pieces.forEach(piece => {
+  let pieceRechercher=pieces.slice();
+  pieceRechercher.forEach(piece => {
     if(piece.titre === requete.params.id)
     {
       pieceRechercher = piece
@@ -62,7 +62,6 @@ app.post('/api/pieces/:id/modifier', (requete,reponse) =>
 {
   let indexAModifier = pieces.findIndex(piece => piece.titre===requete.params.id);
   pieces[indexAModifier] = requete.body;
-  console.log(pieces[indexAModifier]);
   reponse.status(200).json(pieces);
 });
 
@@ -99,13 +98,12 @@ app.post('/api/pieces/ajouter', (requete,reponse) =>{
   
 })
 app.post('/api/categories/:id/modifier', (requete, reponse) =>{
-  let piecesCategorieModifier = pieces.slice();
-  piecesCategorieModifier.map(catMod => {
-      if (catMod.Categorie == requete.params.id){
-        catMod.Categorie = requete.body.categorie
+  pieces.map(catMod => {
+      if (catMod.categorie == requete.params.id){
+        catMod.categorie = requete.body.categorie
       }
   })
-  reponse.json(piecesCategorieModifier)
+  reponse.json(pieces)
 })
 
 app.delete('/api/categories/:id/supprimer',(requete, reponse)=>{
