@@ -17,7 +17,7 @@ function PageCategories(){
       setCategories(body);
     }
     chercherDonnees();
-  }, []);
+  }, [],[categories]);
 
   function AjouterCategorie(p_categorie){
     const nouveauTableau = categories.slice();
@@ -28,13 +28,17 @@ function PageCategories(){
     alert(`La categorie ${p_categorie} est ajouter`);
   }
 
-  function ModifierCategorie(p_categorie){
-    alert(`Modifier pour ${p_categorie}`)
+  function ModifierCategorie(p_categorie,p_nouvelleCategorie){
+    const nouveauTableau = categories.slice();
+    const index = nouveauTableau.findIndex(categorie => categorie === p_categorie);
+
+    nouveauTableau.splice(index,1,p_nouvelleCategorie);
+    setCategories(nouveauTableau);
   }
 
   function SupprimerCategorie(p_categorie){
-    fetch(`/api/categories/${p_categorie}/supprimer`, { method: 'DELETE' });
     alert(`La categorie ${p_categorie} est supprimer`);
+    fetch(`/api/categories/${p_categorie}/supprimer`, { method: 'DELETE' });
   }
 
   const options = {
@@ -95,7 +99,8 @@ function AfficherAjouterCategorie({ AjouterCategorie }){
 }
 
 function AfficherModifierCategorie({ categories, ModifierCategorie }){
-  const [categorieSelectionner, setCategorie] = useState("");
+  const [categorieSelectionner, setCategorie] = useState(categories[0]);
+  let nouvelleCategorie;
 
   return (
     <>
@@ -110,11 +115,11 @@ function AfficherModifierCategorie({ categories, ModifierCategorie }){
           }
         </Form.Control>
         <br/>
-        <Form.Control size="small" type="text" />
+        <Form.Control size="small" type="text" placeholder="" onChange={e => nouvelleCategorie = e.target.value}/>
         </Form.Group>
       </Form>
       <br/>
-      <Button onClick={() => ModifierCategorie(categorieSelectionner)}>
+      <Button onClick={() => ModifierCategorie(categorieSelectionner,nouvelleCategorie)}>
           Modifier
       </Button>
     </>
@@ -122,7 +127,7 @@ function AfficherModifierCategorie({ categories, ModifierCategorie }){
 }
 
 function AfficherSupprimerCategorie({ categories, SupprimerCategorie }){
-  const [categorieSelectionner, setCategorie] = useState("");
+  const [categorieSelectionner, setCategorie] = useState(categories[0]);
 
   return (
     <>
@@ -136,8 +141,7 @@ function AfficherSupprimerCategorie({ categories, SupprimerCategorie }){
               )
           }
         </Form.Control>
-        <br/>
-        <Form.Control size="small" type="text" value={categorieSelectionner}/>
+        
         </Form.Group>
       </Form>
       <br/>
