@@ -6,22 +6,22 @@ app.use(express.json());
 const pieces = [{
       titre:'Daddy',
       artiste: "Charlotte Cardin",
-      categorie: "pop"
+      categorie: ["pop"]
     },
     {
       titre: "Fever",
       artiste: "The McCoys",
-      categorie: "rock"
+      categorie: ["rock"]
     },
     {
       titre:'Peaches',
       artiste: "Justin Bieber",
-      categorie: "pop"
+      categorie: ["pop"]
     },
     {
       titre: 'September',
       artiste: "Earth, Wind & fire",
-      categorie: "Disco"
+      categorie: ["Disco"]
     }
 ];
 
@@ -33,17 +33,9 @@ const categories = [
 
 app.get('/api/pieces/:id', (requete, reponse) =>
 {
-<<<<<<< HEAD
-  const pieceRechercher = requete.params.id;
-  let pieceTrouvee = "";
-
-  pieces.forEach(piece => {
-    if(piece.titre === pieceRechercher)
-=======
   let pieceRechercher=pieces.slice();
   pieceRechercher.forEach(piece => {
     if(piece.titre === requete.params.id)
->>>>>>> 4d1513f7d6f67d550f6b20995e8827d66dd301a6
     {
       pieceTrouvee = piece
     }
@@ -74,12 +66,7 @@ app.post('/api/pieces/:id/modifier', (requete,reponse) =>
   const titreRecherche = requete.params.id;
   const indexAModifier = pieces.findIndex(piece => piece.titre === titreRecherche);
   pieces[indexAModifier] = requete.body;
-<<<<<<< HEAD
-
-  reponse.status(202).json(pieces);
-=======
   reponse.status(200).json(pieces);
->>>>>>> 4d1513f7d6f67d550f6b20995e8827d66dd301a6
 });
 
 app.delete('/api/pieces/:id/supprimer', (requete,reponse) =>
@@ -120,25 +107,12 @@ app.post('/api/pieces/ajouter', (requete,reponse) =>{
   
 })
 app.post('/api/categories/:id/modifier', (requete, reponse) =>{
-<<<<<<< HEAD
-  let piecesCategorieModifier = pieces.slice();
-
-  piecesCategorieModifier.map(catMod => {
-    
-      if (catMod.Categorie == requete.params.id){
-        catMod.Categorie = requete.body.categorie
-      }
-  });
-
-  reponse.status(200).json(piecesCategorieModifier);
-=======
   pieces.map(catMod => {
       if (catMod.categorie == requete.params.id){
         catMod.categorie = requete.body.categorie
       }
   })
   reponse.json(pieces)
->>>>>>> 4d1513f7d6f67d550f6b20995e8827d66dd301a6
 })
 
 app.delete('/api/categories/:id/supprimer',(requete, reponse) => {
