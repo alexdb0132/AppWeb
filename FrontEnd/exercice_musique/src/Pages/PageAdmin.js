@@ -33,7 +33,7 @@ function PageAdmin()
                         <td>{piece.artiste}</td>
                         <td>{piece.categorie}</td>
                         <td>
-                            <Link key={index} to={`/modifier/${index}`}><Button size="sm" active="true" variant="primary">Modifier</Button></Link>
+                            <Link key={index} to={`/modifier/${piece.titre}`}><Button size="sm" active="true" variant="primary" >Modifier</Button></Link>
                             &nbsp;
                             <Link key={piece.titre} to={`/supprimer/${piece.titre}`}><Button size="sm" active="true" variant="primary" >Supprimer</Button></Link>
                         </td>
