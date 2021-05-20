@@ -30,91 +30,103 @@ const categories = [
   "pop",
   "rock"
 ];
+
 app.get('/api/pieces/:id', (requete, reponse) =>
 {
-  let pieceRechercher;
+  const pieceRechercher = requete.params.id;
+  let pieceTrouvee = "";
+
   pieces.forEach(piece => {
-    if(piece.titre === requete.params.id)
+    if(piece.titre === pieceRechercher)
     {
-      pieceRechercher = piece
+      pieceTrouvee = piece
     }
   });
-  if(pieceRechercher !=null) {
-    reponse.status(200).json(pieceRechercher);
+
+  if(pieceTrouvee != null) {
+    reponse.status(200).json(pieceTrouvee);
   }
   else{
-    reponse.status(200).json("piece non trouver");
+    reponse.status(404).json("piece non trouver");
   }
 });
 
 app.post('/api/categories/ajouter',(requete, reponse) =>
 {
-  const nouvelleCategoire = requete.body;
+  const nouvelleCategorie = requete.body;
 
-  if(nouvelleCategoire === undefined)
+  if(nouvelleCategorie === undefined)
   {
-    reponse.send("il manque un champ obligatoire ")   
+    reponse.send("il manque un champ obligatoire!")   
   }
-  categories.push(nouvelleCategoire);
+
+  categories.push(nouvelleCategorie);
 });
 
 app.post('/api/pieces/:id/modifier', (requete,reponse) =>
 {
-  let indexAModifier = pieces.findIndex(piece => piece.titre===requete.params.id);
+  const titreRecherche = requete.params.id;
+  const indexAModifier = pieces.findIndex(piece => piece.titre === titreRecherche);
   pieces[indexAModifier] = requete.body;
-  console.log(pieces[indexAModifier]);
-  reponse.status(200).json(pieces);
+
+  reponse.status(202).json(pieces);
 });
 
 app.delete('/api/pieces/:id/supprimer', (requete,reponse) =>
 {
-  let indexASupprimer = pieces.findIndex(piece => piece.titre===requete.params.id);
+  const titreRecherche = requete.params.id;
+  let indexASupprimer = pieces.findIndex(piece => piece.titre === titreRecherche);
   pieces.splice(indexASupprimer,1);
 
-  reponse.json(pieces);
+  reponse.status(200).json(pieces);
 });
 
 
 // -------------------------------
 
 app.get('/api/pieces', (requete,reponse) =>{
-  let piecesOrdreCategorie = pieces.slice()
-  piecesOrdreCategorie.sort((element1,element2) => (element1.categorie > element2.categorie) ? 1: -1)
+  const piecesOrdreCategorie = pieces.slice();
 
-  reponse.status(200).json(piecesOrdreCategorie)
+  piecesOrdreCategorie.sort((element1,element2) => 
+    (element1.categorie > element2.categorie) ? 1: -1);
+
+  reponse.status(200).json(piecesOrdreCategorie);
 })
 
-app.get('/api/categories', (requete,reponse) =>{ reponse.status(200).json(categories)})
+app.get('/api/categories', (requete,reponse) =>{ 
+  reponse.status(200).json(categories)
+})
 
 app.post('/api/pieces/ajouter', (requete,reponse) =>{
-  const {titre,artiste,categorie} = requete.body;
+  const {titre, artiste, categorie} = requete.body;
 
-  if (titre == null || artiste == null ||categorie ==null ) {
-    reponse.send("il manque un champ obligatoire ")    
+  if (titre == null || artiste == null || categorie ==null ) {
+    reponse.send("il manque un champ obligatoire ");  
   }
   else{
     pieces.push(requete.body)
-    reponse.json(pieces)
+    reponse.status(201).json(pieces)
   }
   
 })
 app.post('/api/categories/:id/modifier', (requete, reponse) =>{
   let piecesCategorieModifier = pieces.slice();
+
   piecesCategorieModifier.map(catMod => {
+    
       if (catMod.Categorie == requete.params.id){
         catMod.Categorie = requete.body.categorie
       }
-  })
-  reponse.json(piecesCategorieModifier)
+  });
+
+  reponse.status(200).json(piecesCategorieModifier);
 })
 
-app.delete('/api/categories/:id/supprimer',(requete, reponse)=>{
-    let indexASupprimer = categories.findIndex(cat => cat===requete.params.id);
-    console.log(indexASupprimer);
+app.delete('/api/categories/:id/supprimer',(requete, reponse) => {
+    let indexASupprimer = categories.findIndex(categorie => categorie === requete.params.id);
     categories.splice(indexASupprimer,1);
   
-    reponse.json(categories);
-  })
-
+    reponse.status(200).json(categories);
+  });
 
 app.listen(8000,() => console.log('ecoute le port 8000'));
