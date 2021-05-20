@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import Table from 'react-bootstrap/Table';
+import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PageCategories from './PageCategories';
 
 function PageRepertoire()
 {
@@ -17,22 +20,22 @@ function PageRepertoire()
 
     return(
         <>
-        <h1>Repertoire: </h1>
-            <Table striped bordered hover>
-                <thead>
-                    <th>Titre</th>
-                    <th>Artiste</th>
-                    <th>Categorie</th>
-                </thead>
-                <tbody>
-                {repertoire.map(piece => <tr>
-                    <td>{piece.titre}</td>
-                    <td>{piece.artiste}</td>
-                    <td>{piece.categorie}</td>
-                    </tr>)}
-                </tbody>
-
-            </Table>
+        <h1>Répertoire: </h1>
+        <CardGroup>
+            {
+                repertoire.map(piece => 
+                    <Card>
+                        <Card.Body>
+                            <Card.Title className="text-center">{piece.titre}</Card.Title>
+                            <Card.Text  className="text-center">{piece.artiste}</Card.Text>
+                            <Card.Text  className="text-center">
+                                {piece.categorie}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>    
+                )
+            }
+        </CardGroup>
         </>
     );
 }
