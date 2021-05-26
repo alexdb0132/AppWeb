@@ -1,4 +1,5 @@
 import express, { json } from 'express';
+import {chercherpiece} from './fonction';
 
 const app = express();
 app.use(express.json());
@@ -31,19 +32,16 @@ const categories = [
   "rock"
 ];
 
+
+
 app.get('/api/pieces/:id', (requete, reponse) =>
 {
   const pieceRechercher = requete.params.id;
-  let pieceTrouvee = "";
+  let pieceTrouvee = undefined;
 
-  pieces.forEach(piece => {
-    if(piece.titre === pieceRechercher)
-    {
-      pieceTrouvee = piece
-    }
-  });
+  pieceTrouvee = chercherpiece(pieceRechercher, pieces);
 
-  if(pieceTrouvee != null) {
+  if(pieceTrouvee != undefined) {
     reponse.status(200).json(pieceTrouvee);
   }
   else{
@@ -130,3 +128,4 @@ app.delete('/api/categories/:id/supprimer',(requete, reponse) => {
   });
 
 app.listen(8000,() => console.log('ecoute le port 8000'));
+
