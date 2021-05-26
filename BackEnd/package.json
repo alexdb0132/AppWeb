@@ -17,6 +17,7 @@
     "@babel/core": "^7.14.2",
     "@babel/node": "^7.14.2",
     "@babel/preset-env": "^7.14.2",
+    "jtest": "0.0.1",
     "nodemon": "^2.0.7"
   },
   "description": ""

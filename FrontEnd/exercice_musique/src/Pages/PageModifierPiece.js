@@ -18,11 +18,12 @@ function PageModifierPiece({ match }){
         };
         chercherDonnes();
     }, []);
+    
     var pieceRenvoye = repertoire;
 
     function modifierPiece(pieceAModifier)
     {
-        let data =pieceAModifier
+        let data = pieceAModifier;
         let options = {
             method: 'POST',
             headers: {'Content-type' : 'application/json'},
