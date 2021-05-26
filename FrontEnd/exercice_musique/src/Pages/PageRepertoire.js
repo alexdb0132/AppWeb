@@ -67,7 +67,7 @@ function PageRepertoire()
         <Table>
             <TableHead>
                 <TableRow>
-                <TableCell align="center">Nom</TableCell>
+                <TableCell align="center" >Nom</TableCell>
                 <TableCell align="center">Artiste</TableCell>
                 </TableRow>
             </TableHead>
