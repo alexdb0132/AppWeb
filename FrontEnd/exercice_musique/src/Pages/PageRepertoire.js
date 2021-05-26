@@ -30,9 +30,11 @@ function PageRepertoire()
 
     function ajouterSelection(piece){
         var nouveaurepertoire = repertoireSelectionner.slice();
+        
         if(nouveaurepertoire.includes(piece))
         {
-            nouveaurepertoire.splice(nouveaurepertoire.indexOf(piece))
+            var index = nouveaurepertoire.findIndex(pieceCour => pieceCour.titre === piece.titre);
+            nouveaurepertoire.splice(index,1);
         }
         else
         {
@@ -81,11 +83,6 @@ function PageRepertoire()
                         )
                 }
             </TableBody>
-            {
-                repertoireSelectionner.map(piece =>
-                    <th></th>
-                    )
-            }
         </Table>
         </>
     );
