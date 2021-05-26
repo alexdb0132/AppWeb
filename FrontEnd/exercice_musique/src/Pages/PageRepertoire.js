@@ -6,8 +6,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
+import Grid from '@material-ui/core/Grid'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PageCategories from './PageCategories';
 import { Checkbox } from 'semantic-ui-react'
 
 //pour ajouter semantic: npm install semantic-ui-react semantic-ui-css
@@ -46,24 +46,28 @@ function PageRepertoire()
     return(
         <>
         <h1>Répertoire: </h1>
-        <CardGroup>
-            {
-                repertoire.map(piece => 
-                    <Card>
-                        <Card.Body>
-                            <Card.Title className="text-center">{piece.titre}</Card.Title>
-                            <Card.Text  className="text-center">{piece.artiste}</Card.Text>
-                            <Card.Text  className="text-center">
-                                {piece.categorie}
-                            </Card.Text>
-                            <Card.Text  className="text-center">
-                            <Checkbox onClick={() => ajouterSelection(piece)}/>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>    
-                )
-            }
-        </CardGroup>
+        <Grid container spacing={24}>
+            <CardGroup>
+                {
+                    repertoire.map(piece => 
+                        <Grid item md={3}>
+                            <Card>
+                                <Card.Body>
+                                    <Card.Title className="text-center">{piece.titre}</Card.Title>
+                                    <Card.Text  className="text-center">{piece.artiste}</Card.Text>
+                                    <Card.Text  className="text-center">
+                                        {piece.categorie}
+                                    </Card.Text>
+                                    <Card.Text  className="text-center">
+                                    <Checkbox onClick={() => ajouterSelection(piece)}/>
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>  
+                        </Grid>  
+                    )
+                }
+            </CardGroup>
+        </Grid>
         <br/>
         <h2>Chansons Selectionner: </h2>
         <Table>
