@@ -6,13 +6,12 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
-import Grid from '@material-ui/core/Grid'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Grid from '@material-ui/core/Grid'
 import { Checkbox } from 'semantic-ui-react'
 
 //pour ajouter semantic: npm install semantic-ui-react semantic-ui-css
-//pour ajoueter material-ui: npm install @material-ui/core
-
+//pour ajouter material-ui: npm install @material-ui/core
 
 function PageRepertoire()
 {
@@ -69,7 +68,7 @@ function PageRepertoire()
             </CardGroup>
         </Grid>
         <br/>
-        <h2>Chansons Selectionner: </h2>
+        <h2>Chansons Selectionnées: </h2>
         <Table>
             <TableHead>
                 <TableRow>

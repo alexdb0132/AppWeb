@@ -19,7 +19,6 @@ import PageRepertoire from './Pages/PageRepertoire';
 import PageAjouterPiece from './Pages/PageAjouterPiece';
 
 function App() {
-
   return (
     <Router>
       <Container>
