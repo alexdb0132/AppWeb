@@ -15,7 +15,7 @@ import { Checkbox } from 'semantic-ui-react'
 
 function PageRepertoire()
 {
-    const [repertoireSelectionner, setrepertoireSelectionner] = useState([]);
+    const [repertoireSelectionne, setrepertoireSelectionne] = useState([]);
     const [repertoire, setRepertoire] = useState([]);
     
     useEffect(() => {
@@ -28,18 +28,18 @@ function PageRepertoire()
     }, []);
 
     function ajouterSelection(piece){
-        var nouveaurepertoire = repertoireSelectionner.slice();
+        var nouveauRepertoire = repertoireSelectionne.slice();
         
-        if(nouveaurepertoire.includes(piece))
+        if(nouveauRepertoire.includes(piece))
         {
-            var index = nouveaurepertoire.findIndex(pieceCour => pieceCour.titre === piece.titre);
-            nouveaurepertoire.splice(index,1);
+            var index = nouveauRepertoire.findIndex(pieceCour => pieceCour.titre === piece.titre);
+            nouveauRepertoire.splice(index,1);
         }
         else
         {
-            nouveaurepertoire.push(piece);
+            nouveauRepertoire.push(piece);
         }
-        setrepertoireSelectionner(nouveaurepertoire);
+        setrepertoireSelectionne(nouveauRepertoire);
     }
 
     return(
@@ -78,7 +78,7 @@ function PageRepertoire()
             </TableHead>
             <TableBody>
                 {
-                    repertoireSelectionner.map(piece =>
+                    repertoireSelectionne.map(piece =>
                         <TableRow>
                             <TableCell align="center">{piece.titre}</TableCell>
                             <TableCell align="center">{piece.artiste}</TableCell>
