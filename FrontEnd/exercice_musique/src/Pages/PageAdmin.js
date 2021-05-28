@@ -3,10 +3,12 @@ import {Link} from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PagePriveeDemandesSpeciales from './PagePriveeDemandesSpeciales';
 
 function PageAdmin()
 {
     const [repertoire, setRepertoire] = useState([]);
+    const [pageAffichee, setPage] = useState("");
     
     useEffect(() => {
         const chercherDonnes = async () => {
@@ -17,7 +19,28 @@ function PageAdmin()
         chercherDonnes();
     }, []);
 
+    function ChangerDePage(p_page){
+        setPage(p_page);
+    }
+
+    let page = <AfficherTableModifierSupprimer repertoire={repertoire} ChangerDePage={ChangerDePage}/>;
+ 
+    if("admin" === pageAffichee){
+        page = <AfficherTableModifierSupprimer repertoire={repertoire} ChangerDePage={ChangerDePage}/>
+    }
+    else if("privee" === pageAffichee){
+        page = <AfficherPageePrivee ChangerDePage={ChangerDePage}/>
+    }
+    
     return(
+        <>
+            {page}
+        </>
+    );
+}
+
+function AfficherTableModifierSupprimer({ repertoire, ChangerDePage }){
+    return (
         <>
             <Table striped bordered hover>
                 <thead>
@@ -40,6 +63,20 @@ function PageAdmin()
                     </tr>)}
                 </tbody>
             </Table>
+            <br/>
+            <h2>Se rendre sur la page des demandes spéciales</h2>
+            <Button onClick={() => ChangerDePage("privee")}>Rediriger</Button>
+        </>
+    );
+}
+
+function AfficherPageePrivee({ ChangerDePage }){
+    return (
+        <>
+          <PagePriveeDemandesSpeciales/>
+          <br/>
+          <h2>Revenir à la page administrateur</h2>
+          <Button onClick={() => ChangerDePage("admin")}>Rediriger</Button>
         </>
     );
 }

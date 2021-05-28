@@ -7,16 +7,15 @@ import TableCell from '@material-ui/core/TableCell';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PageCategories from './PageCategories';
+import Grid from '@material-ui/core/Grid'
 import { Checkbox } from 'semantic-ui-react'
 
 //pour ajouter semantic: npm install semantic-ui-react semantic-ui-css
-//pour ajoueter material-ui: npm install @material-ui/core
-
+//pour ajouter material-ui: npm install @material-ui/core
 
 function PageRepertoire()
 {
-    const [repertoireSelectionner, setrepertoireSelectionner] = useState([]);
+    const [repertoireSelectionne, setrepertoireSelectionne] = useState([]);
     const [repertoire, setRepertoire] = useState([]);
     
     useEffect(() => {
@@ -29,43 +28,47 @@ function PageRepertoire()
     }, []);
 
     function ajouterSelection(piece){
-        var nouveaurepertoire = repertoireSelectionner.slice();
+        var nouveauRepertoire = repertoireSelectionne.slice();
         
-        if(nouveaurepertoire.includes(piece))
+        if(nouveauRepertoire.includes(piece))
         {
-            var index = nouveaurepertoire.findIndex(pieceCour => pieceCour.titre === piece.titre);
-            nouveaurepertoire.splice(index,1);
+            var index = nouveauRepertoire.findIndex(pieceCour => pieceCour.titre === piece.titre);
+            nouveauRepertoire.splice(index,1);
         }
         else
         {
-            nouveaurepertoire.push(piece);
+            nouveauRepertoire.push(piece);
         }
-        setrepertoireSelectionner(nouveaurepertoire);
+        setrepertoireSelectionne(nouveauRepertoire);
     }
 
     return(
         <>
         <h1>Répertoire: </h1>
-        <CardGroup>
-            {
-                repertoire.map(piece => 
-                    <Card>
-                        <Card.Body>
-                            <Card.Title className="text-center">{piece.titre}</Card.Title>
-                            <Card.Text  className="text-center">{piece.artiste}</Card.Text>
-                            <Card.Text  className="text-center">
-                                {piece.categorie}
-                            </Card.Text>
-                            <Card.Text  className="text-center">
-                            <Checkbox onClick={() => ajouterSelection(piece)}/>
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>    
-                )
-            }
-        </CardGroup>
+        <Grid container spacing={24}>
+            <CardGroup>
+                {
+                    repertoire.map(piece => 
+                        <Grid item md={3}>
+                            <Card>
+                                <Card.Body>
+                                    <Card.Title className="text-center">{piece.titre}</Card.Title>
+                                    <Card.Text  className="text-center">{piece.artiste}</Card.Text>
+                                    <Card.Text  className="text-center">
+                                        {piece.categorie}
+                                    </Card.Text>
+                                    <Card.Text  className="text-center">
+                                    <Checkbox onClick={() => ajouterSelection(piece)}/>
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>  
+                        </Grid>  
+                    )
+                }
+            </CardGroup>
+        </Grid>
         <br/>
-        <h2>Chansons Selectionner: </h2>
+        <h2>Chansons Selectionnées: </h2>
         <Table>
             <TableHead>
                 <TableRow>
@@ -75,7 +78,7 @@ function PageRepertoire()
             </TableHead>
             <TableBody>
                 {
-                    repertoireSelectionner.map(piece =>
+                    repertoireSelectionne.map(piece =>
                         <TableRow>
                             <TableCell align="center">{piece.titre}</TableCell>
                             <TableCell align="center">{piece.artiste}</TableCell>
