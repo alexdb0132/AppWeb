@@ -13,7 +13,7 @@ export function chercherpiece(pieceRechercher ,pieces)
   return pieceTrouvee;
 }
 
-export function organiserPiecesParcategorie()
+export function organiserPiecesParcategorie(pieces)
 {
   const piecesOrdreCategorie = pieces.slice();
   piecesOrdreCategorie.sort((element1,element2) => 
