@@ -39,7 +39,7 @@ test("chercherpiece", () =>{
 });
 
 test("organiserPiecesParcategorie", () =>{
-  expect(organiserPiecesParcategorie(pieces).toStrictEqual(
+  expect(organiserPiecesParcategorie(pieces)).toStrictEqual(
     [
       {
           "titre": "September",
@@ -70,9 +70,15 @@ test("organiserPiecesParcategorie", () =>{
           ]
       }
   ]
-  ))
+  )
 });
 
 test("AfficherTousCategorie", ()=>{
-  expect(AfficherTousCategorie())
+  expect(AfficherTousCategorie(categories)).toStrictEqual(
+    [
+      "Disco",
+      "pop",
+      "rock"
+  ]
+  )
 })

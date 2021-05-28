@@ -20,7 +20,7 @@ export function organiserPiecesParcategorie(pieces)
     (element1.categorie > element2.categorie) ? 1: -1);
     return piecesOrdreCategorie;
 }
-export function AfficherTousCategorie()
+export function AfficherTousCategorie(categories)
 {
   return categories;
 }
